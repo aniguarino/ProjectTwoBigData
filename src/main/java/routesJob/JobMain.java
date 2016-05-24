@@ -24,6 +24,7 @@ import com.mongodb.hadoop.MongoInputFormat;
 
 import scala.Tuple2;
 
+
 public class JobMain 
 {
     public static void main( String[] args ){
