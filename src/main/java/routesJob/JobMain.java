@@ -159,18 +159,16 @@ public class JobMain
 
 		int count = 0;
 		for(RouteObject r: finalHash){
-
+			
 			BasicDBObject route = new BasicDBObject().
 					append("Origin", r.getOrigin()).
 					append("OriginCity", r.getOriginCity()).
-					append("OriginCoordinates", r.getOriginCoordinates()).
-					//append("OriginLatitude", Double.parseDouble(r.getOriginLatitude())).
-					//append("OriginLongitude", Double.parseDouble(r.getOriginLongitude())).
+					append("OriginLatitude", r.getOriginLatitude()).
+					append("OriginLongitude", r.getOriginLongitude()).
 					append("Dest", r.getDest()).
 					append("DestCity", r.getDestCity()).
-					append("DestCoordinates", r.getDestCoordinates());
-					//append("DestLatitude", Double.parseDouble(r.getDestLatitude())).
-					//append("DestLongitude", Double.parseDouble(r.getDestLongitude()));
+					append("DestLatitude", r.getDestLatitude()).
+					append("DestLongitude", r.getDestLongitude());
 
 			coll.insert(route);
 			count++;

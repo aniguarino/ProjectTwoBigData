@@ -1,34 +1,43 @@
 package routesJob;
 
-//import java.util.StringTokenizer;
+import java.util.StringTokenizer;
 
 public class RouteObject {
-
+	
 	private String origin;
 	private String originCity;
-	private String originCoordinates;
-	//private String originLatitude;
-	//private String originLongitude;
+	private Double originLatitude;
+	private Double originLongitude;
 
 	private String dest;
 	private String destCity;
-	private String destCoordinates;
-	//private String destLatitude;
-	//private String destLongitude;
+	private Double destLatitude;
+	private Double destLongitude;
 
 	public RouteObject(String origin, String originCity, String originCoordinates, String dest, String destCity, String destCoordinates){
 		this.origin = origin;
 		this.originCity = originCity;
-		this.originCoordinates = originCoordinates;
-		/*StringTokenizer tokenizer1 = new StringTokenizer(originCoordinates,";");
-		this.originLatitude = tokenizer1.nextToken();
-		this.originLongitude = tokenizer1.nextToken();*/
+		
+		if(originCoordinates != null){
+			StringTokenizer tokenizer1 = new StringTokenizer(originCoordinates,";");
+			this.originLatitude = Double.parseDouble(tokenizer1.nextToken());
+			this.originLongitude = Double.parseDouble(tokenizer1.nextToken());
+		}else{
+			this.originLatitude = null;
+			this.originLongitude = null;
+		}
+		
 		this.dest = dest;
 		this.destCity = destCity;
-		this.destCoordinates = destCoordinates;
-		/*StringTokenizer tokenizer2 = new StringTokenizer(destCoordinates,";");
-		this.destLatitude = tokenizer2.nextToken();
-		this.destLongitude = tokenizer2.nextToken();*/
+		
+		if(destCoordinates != null){
+			StringTokenizer tokenizer2 = new StringTokenizer(destCoordinates,";");
+			this.destLatitude = Double.parseDouble(tokenizer2.nextToken());
+			this.destLongitude = Double.parseDouble(tokenizer2.nextToken());
+		}else{
+			this.destLatitude = null;
+			this.destLongitude = null;
+		}
 	}
 
 	public String getOrigin() {
@@ -63,28 +72,43 @@ public class RouteObject {
 		this.destCity = destCity;
 	}
 
-	public String getOriginCoordinates() {
-		return originCoordinates;
+	public Double getOriginLatitude() {
+		return originLatitude;
 	}
 
-	public void setOriginCoordinates(String originCoordinates) {
-		this.originCoordinates = originCoordinates;
+	public void setOriginLatitude(Double originLatitude) {
+		this.originLatitude = originLatitude;
 	}
 
-	public String getDestCoordinates() {
-		return destCoordinates;
+	public Double getOriginLongitude() {
+		return originLongitude;
 	}
 
-	public void setDestCoordinates(String destCoordinates) {
-		this.destCoordinates = destCoordinates;
+	public void setOriginLongitude(Double originLongitude) {
+		this.originLongitude = originLongitude;
+	}
+
+	public Double getDestLatitude() {
+		return destLatitude;
+	}
+
+	public void setDestLatitude(Double destLatitude) {
+		this.destLatitude = destLatitude;
+	}
+
+	public Double getDestLongitude() {
+		return destLongitude;
+	}
+
+	public void setDestLongitude(Double destLongitude) {
+		this.destLongitude = destLongitude;
 	}
 	
-
 	@Override
 	public String toString() {
-		return "RouteObject [origin=" + origin + ", originCity=" + originCity + ", originCoordinates="
-				+ originCoordinates + ", dest=" + dest + ", destCity=" + destCity + ", destCoordinates="
-				+ destCoordinates + "]";
+		return "RouteObject [origin=" + origin + ", originCity=" + originCity + ", originLatitude=" + originLatitude
+				+ ", originLongitude=" + originLongitude + ", dest=" + dest + ", destCity=" + destCity
+				+ ", destLatitude=" + destLatitude + ", destLongitude=" + destLongitude + "]";
 	}
 
 	@Override
@@ -93,10 +117,12 @@ public class RouteObject {
 		int result = 1;
 		result = prime * result + ((dest == null) ? 0 : dest.hashCode());
 		result = prime * result + ((destCity == null) ? 0 : destCity.hashCode());
-		result = prime * result + ((destCoordinates == null) ? 0 : destCoordinates.hashCode());
+		result = prime * result + ((destLatitude == null) ? 0 : destLatitude.hashCode());
+		result = prime * result + ((destLongitude == null) ? 0 : destLongitude.hashCode());
 		result = prime * result + ((origin == null) ? 0 : origin.hashCode());
 		result = prime * result + ((originCity == null) ? 0 : originCity.hashCode());
-		result = prime * result + ((originCoordinates == null) ? 0 : originCoordinates.hashCode());
+		result = prime * result + ((originLatitude == null) ? 0 : originLatitude.hashCode());
+		result = prime * result + ((originLongitude == null) ? 0 : originLongitude.hashCode());
 		return result;
 	}
 
@@ -119,10 +145,15 @@ public class RouteObject {
 				return false;
 		} else if (!destCity.equals(other.destCity))
 			return false;
-		if (destCoordinates == null) {
-			if (other.destCoordinates != null)
+		if (destLatitude == null) {
+			if (other.destLatitude != null)
 				return false;
-		} else if (!destCoordinates.equals(other.destCoordinates))
+		} else if (!destLatitude.equals(other.destLatitude))
+			return false;
+		if (destLongitude == null) {
+			if (other.destLongitude != null)
+				return false;
+		} else if (!destLongitude.equals(other.destLongitude))
 			return false;
 		if (origin == null) {
 			if (other.origin != null)
@@ -134,12 +165,17 @@ public class RouteObject {
 				return false;
 		} else if (!originCity.equals(other.originCity))
 			return false;
-		if (originCoordinates == null) {
-			if (other.originCoordinates != null)
+		if (originLatitude == null) {
+			if (other.originLatitude != null)
 				return false;
-		} else if (!originCoordinates.equals(other.originCoordinates))
+		} else if (!originLatitude.equals(other.originLatitude))
+			return false;
+		if (originLongitude == null) {
+			if (other.originLongitude != null)
+				return false;
+		} else if (!originLongitude.equals(other.originLongitude))
 			return false;
 		return true;
 	}
-	
+
 }
