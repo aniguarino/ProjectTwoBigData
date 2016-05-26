@@ -17,7 +17,10 @@ public class FilterAirport implements Function<Tuple2<String, AirportInfo>, Bool
 		if((value._2.getCountry().equals("US") ||
 				value._2.getCountry().equals("UM") ||
 				value._2.getCountry().equals("VI") ||
-				value._2.getCountry().equals("PR")) &&
+				value._2.getCountry().equals("PR") ||
+				value._2.getCountry().equals("GU") ||
+				value._2.getCountry().equals("MP") ||
+				value._2.getCountry().equals("FM")) &&
 				value._2.getIataCode() != null)
 			return true;
 		return false;
