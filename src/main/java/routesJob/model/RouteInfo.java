@@ -9,49 +9,24 @@ public class RouteInfo implements Comparable<RouteInfo>, Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String flightDate;
-	
+	private String distance;
 	private String originCity;
-	private String originLatitude;
-	private String originLongitude;
-
 	private String destCity;
-	private String destLatitude;
-	private String destLongitude;
 
-	public RouteInfo(String flightDate, String originCity, String originLatitude, String originLongitude, String destCity, String destLatitude, String destLongitude){
+
+	public RouteInfo(String flightDate, String distance, String originCity, String destCity){
 		this.flightDate = flightDate;
-		
+		this.distance = distance;
 		this.originCity = originCity;
-		this.originLatitude = originLatitude;
-		this.originLongitude = originLongitude;
-
 		this.destCity = destCity;
-		this.destLatitude = destLatitude;
-		this.destLongitude = destLongitude;
 	}
-
+	
 	public String getOriginCity() {
 		return originCity;
 	}
 
 	public void setOriginCity(String originCity) {
 		this.originCity = originCity;
-	}
-
-	public String getOriginLatitude() {
-		return originLatitude;
-	}
-
-	public void setOriginLatitude(String originLatitude) {
-		this.originLatitude = originLatitude;
-	}
-
-	public String getOriginLongitude() {
-		return originLongitude;
-	}
-
-	public void setOriginLongitude(String originLongitude) {
-		this.originLongitude = originLongitude;
 	}
 
 	public String getDestCity() {
@@ -62,22 +37,6 @@ public class RouteInfo implements Comparable<RouteInfo>, Serializable{
 		this.destCity = destCity;
 	}
 
-	public String getDestLatitude() {
-		return destLatitude;
-	}
-
-	public void setDestLatitude(String destLatitude) {
-		this.destLatitude = destLatitude;
-	}
-
-	public String getDestLongitude() {
-		return destLongitude;
-	}
-
-	public void setDestLongitude(String destLongitude) {
-		this.destLongitude = destLongitude;
-	}
-
 	public String getFlightDate() {
 		return flightDate;
 	}
@@ -86,8 +45,17 @@ public class RouteInfo implements Comparable<RouteInfo>, Serializable{
 		this.flightDate = flightDate;
 	}
 
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+	
 	@Override
 	public int compareTo(RouteInfo o) {
 		return this.flightDate.compareTo(o.getFlightDate());
 	}
+	
 }

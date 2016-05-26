@@ -23,8 +23,10 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 		String dest = (String) arg._2.get("Dest");
 		String destCityName = (String) arg._2.get("DestCityName");
 		String flightDate = (String) arg._2.get("FlightDate");
+		String uniqueCarrier = (String) arg._2.get("UniqueCarrier");
+		//String airTime = (String) arg._2.get("AirTime").toString(); 
+		String distance = (String) arg._2.get("Distance").toString();
 
-		return new Tuple2<RouteId, RouteInfo>(new RouteId(origin, dest), new RouteInfo(flightDate,
-				originCityName, null, null, destCityName, null, null));
+		return new Tuple2<RouteId, RouteInfo>(new RouteId(origin, dest, uniqueCarrier), new RouteInfo(flightDate, distance, originCityName, destCityName));
 	}
 }
