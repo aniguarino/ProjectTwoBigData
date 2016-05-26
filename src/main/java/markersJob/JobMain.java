@@ -1,4 +1,4 @@
-package routesJob;
+package markersJob;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.spark.SparkConf;
@@ -9,13 +9,9 @@ import org.bson.BSONObject;
 import com.mongodb.hadoop.MongoInputFormat;
 import com.mongodb.hadoop.MongoOutputFormat;
 
-import routesJob.functions.FilterCancelledAndDiverted;
-import routesJob.functions.ManagingFlights;
-import routesJob.functions.ProduceRoutes;
-import routesJob.functions.SaveMongoCalcMean;
-import routesJob.model.RouteId;
-import routesJob.model.RouteInfo;
-
+import markersJob.functions.ManagingRoutes;
+import markersJob.functions.ProduceMarkers;
+import markersJob.functions.SaveMongo;
 
 public class JobMain {
 	private static JavaSparkContext sc;
@@ -25,23 +21,23 @@ public class JobMain {
 		sc = new JavaSparkContext(sparkConf);
 
 		Configuration inputConfig = new Configuration();
-		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.input");
+		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.routes");
 
 		Configuration outputConfig = new Configuration();
-		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.routes");
+		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.markers");
 
 		JavaPairRDD<Object, BSONObject> inputRDD = sc.newAPIHadoopRDD(
 				inputConfig,       // Configuration
 				MongoInputFormat.class,   // InputFormat: read from a live cluster.
 				Object.class,             // Key class
 				BSONObject.class          // Value class
-				).filter(new FilterCancelledAndDiverted());
+				);
 
-		JavaPairRDD<RouteId, RouteInfo> flights = inputRDD.mapToPair(new ManagingFlights());
+		JavaPairRDD<String, String> routes = inputRDD.flatMapToPair(new ManagingRoutes());
 		
-		JavaPairRDD<RouteId, RouteInfo> routes = flights.reduceByKey(new ProduceRoutes());
+		JavaPairRDD<String, String> markers = routes.reduceByKey(new ProduceMarkers());
 		
-		JavaPairRDD<Object, BSONObject> routesSave = routes.mapToPair(new SaveMongoCalcMean());
+		JavaPairRDD<Object, BSONObject> routesSave = markers.mapToPair(new SaveMongo());
 
 		routesSave.saveAsNewAPIHadoopFile(
 				"file:///this-is-completely-unused",
@@ -51,6 +47,6 @@ public class JobMain {
 				outputConfig
 				);
 
-		System.out.println("Fatto! Ho salvato le rotte distinte in MongoDB...");
+		System.out.println("Fatto! Ho salvato i marker distinti in MongoDB...");
 	}
 }

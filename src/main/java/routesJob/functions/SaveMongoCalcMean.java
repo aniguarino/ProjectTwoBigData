@@ -41,7 +41,9 @@ public class SaveMongoCalcMean implements PairFunction<Tuple2<RouteId, RouteInfo
 				append("DistanceMiles", arg0._2.getDistance()).
 				append("DistanceKm", (Double.parseDouble(arg0._2.getDistance())*1.60934)+"").
 				append("OriginMarker", arg0._1.getOriginIata()+", "+arg0._2.getOriginCity()).
-				append("DestMarker", arg0._1.getDestIata()+", "+arg0._2.getDestCity());
+				append("OriginCity", arg0._2.getOriginCity()).
+				append("DestMarker", arg0._1.getDestIata()+", "+arg0._2.getDestCity()).
+				append("DestCity", arg0._2.getDestCity());
 		
 		return new Tuple2<Object, BSONObject>(null, save);
 	}
