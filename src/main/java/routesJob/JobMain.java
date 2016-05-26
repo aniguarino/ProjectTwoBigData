@@ -11,7 +11,7 @@ import com.mongodb.hadoop.MongoOutputFormat;
 
 import routesJob.functions.ManagingFlights;
 import routesJob.functions.ProduceRoutes;
-import routesJob.functions.SaveMongo;
+import routesJob.functions.SaveMongoCalcMean;
 import routesJob.model.RouteId;
 import routesJob.model.RouteInfo;
 
@@ -35,13 +35,13 @@ public class JobMain {
 				MongoInputFormat.class,   // InputFormat: read from a live cluster.
 				Object.class,             // Key class
 				BSONObject.class          // Value class
-				);
+				).filter(new FilterCancelledAndDiverted());
 
 		JavaPairRDD<RouteId, RouteInfo> flights = inputRDD.mapToPair(new ManagingFlights());
 		
 		JavaPairRDD<RouteId, RouteInfo> routes = flights.reduceByKey(new ProduceRoutes());
 		
-		JavaPairRDD<Object, BSONObject> routesSave = routes.mapToPair(new SaveMongo());
+		JavaPairRDD<Object, BSONObject> routesSave = routes.mapToPair(new SaveMongoCalcMean());
 
 		routesSave.saveAsNewAPIHadoopFile(
 				"file:///this-is-completely-unused",
@@ -52,6 +52,5 @@ public class JobMain {
 				);
 
 		System.out.println("Fatto! Ho salvato le rotte distinte in MongoDB...");
-		
 	}
 }

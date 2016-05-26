@@ -2,21 +2,27 @@ package routesJob.model;
 
 import java.io.Serializable;
 
-public class RouteInfo implements Comparable<RouteInfo>, Serializable{
+public class RouteInfo implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private String flightDate;
+	
+	private String minFlightDate;
+	private String maxFlightDate;
 	private String distance;
+	private Long airTime;
 	private String originCity;
 	private String destCity;
+	private Integer countAirTime;
 
 
-	public RouteInfo(String flightDate, String distance, String originCity, String destCity){
-		this.flightDate = flightDate;
+	public RouteInfo(String minFlightDate, String maxFlightDate, String distance, Long airTime, Integer countAirTime, String originCity, String destCity){
+		this.minFlightDate = minFlightDate;
+		this.maxFlightDate = maxFlightDate;
 		this.distance = distance;
+		this.airTime = airTime;
+		this.countAirTime = countAirTime;
 		this.originCity = originCity;
 		this.destCity = destCity;
 	}
@@ -37,12 +43,20 @@ public class RouteInfo implements Comparable<RouteInfo>, Serializable{
 		this.destCity = destCity;
 	}
 
-	public String getFlightDate() {
-		return flightDate;
+	public String getMinFlightDate() {
+		return minFlightDate;
 	}
 
-	public void setFlightDate(String flightDate) {
-		this.flightDate = flightDate;
+	public void setMinFlightDate(String minFlightDate) {
+		this.minFlightDate = minFlightDate;
+	}
+
+	public String getMaxFlightDate() {
+		return maxFlightDate;
+	}
+
+	public void setMaxFlightDate(String maxFlightDate) {
+		this.maxFlightDate = maxFlightDate;
 	}
 
 	public String getDistance() {
@@ -52,10 +66,20 @@ public class RouteInfo implements Comparable<RouteInfo>, Serializable{
 	public void setDistance(String distance) {
 		this.distance = distance;
 	}
-	
-	@Override
-	public int compareTo(RouteInfo o) {
-		return this.flightDate.compareTo(o.getFlightDate());
+
+	public Long getAirTime() {
+		return airTime;
 	}
-	
+
+	public void setAirTime(Long airTime) {
+		this.airTime = airTime;
+	}
+
+	public Integer getCountAirTime() {
+		return countAirTime;
+	}
+
+	public void setCountAirTime(Integer countAirTime) {
+		this.countAirTime = countAirTime;
+	}
 }
