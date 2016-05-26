@@ -19,15 +19,16 @@ public class SaveMongo implements PairFunction<Tuple2<RouteId, RouteInfo>, Objec
 	@Override
 	public Tuple2<Object, BSONObject> call(Tuple2<RouteId, RouteInfo> arg0) throws Exception {
 		BSONObject save = new BasicDBObject().
-				append("FlightDate", arg0._2.getFlightDate().toString()).
+				append("FlightDateMax", arg0._2.getFlightDate().toString()).
+				append("UniqueCarrier", arg0._1.getUniqueCarrier()).
+				//append("AirTime", arg0._2.getAirTime()).
+				append("Distance", arg0._2.getDistance()).
+				append("OriginMarker", arg0._1.getOriginIata()+", "+arg0._2.getOriginCity()).
 				append("Origin", arg0._1.getOriginIata()).
 				append("OriginCity", arg0._2.getOriginCity()).
-				append("OriginLatitude", arg0._2.getOriginLatitude()).
-				append("OriginLongitude", arg0._2.getOriginLongitude()).
+				append("DestMarker", arg0._1.getDestIata()+", "+arg0._2.getDestCity()).
 				append("Dest", arg0._1.getDestIata()).
-				append("DestCity", arg0._2.getDestCity()).
-				append("DestLatitude", arg0._2.getDestLatitude()).
-				append("DestLongitude", arg0._2.getDestLongitude());
+				append("DestCity", arg0._2.getDestCity());
 		return new Tuple2<Object, BSONObject>(null, save);
 	}
 
