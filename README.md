@@ -1,10 +1,12 @@
 # ProjectTwoBigData
 
-1) routesJob
-
-Istruzioni per MongoDB:
-Importare l'input prima di eseguire il Job. (Collezione "input") Comando qui di seguito:
+Istruzioni preliminari per MongoDB:
+Importare l'input prima di eseguire i Job. (DB "airplaneDB" - Collezione "input") Comando qui di seguito:
 sudo mongoimport -d airplaneDB -c input --type csv --file XXX.csv --headerline 
 
-Effetti:
-Dopo l'esecuzione del Job risulterà una nuova collezione chiamata "routes" con i risultati.
+Nota: Eseguire i Job in serie, con l'ordinamento indicato:
+
+1) routesJob
+2) markersJob
+3) meanDelayJob
+4) 

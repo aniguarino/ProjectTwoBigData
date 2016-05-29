@@ -17,7 +17,7 @@ public class JobMain {
 	private static JavaSparkContext sc;
 
 	public static void main( String[] args ){
-		SparkConf sparkConf = new SparkConf().setAppName("routesJob").setMaster("local");
+		SparkConf sparkConf = new SparkConf().setAppName("markersJob").setMaster("local");
 		sc = new JavaSparkContext(sparkConf);
 
 		Configuration inputConfig = new Configuration();
@@ -37,9 +37,9 @@ public class JobMain {
 		
 		JavaPairRDD<String, String> markers = routes.reduceByKey(new ProduceMarkers());
 		
-		JavaPairRDD<Object, BSONObject> routesSave = markers.mapToPair(new SaveMongo());
+		JavaPairRDD<Object, BSONObject> markersSave = markers.mapToPair(new SaveMongo());
 
-		routesSave.saveAsNewAPIHadoopFile(
+		markersSave.saveAsNewAPIHadoopFile(
 				"file:///this-is-completely-unused",
 				Object.class,
 				BSONObject.class,
