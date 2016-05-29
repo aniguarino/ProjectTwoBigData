@@ -10,13 +10,13 @@ public class FlightId implements Serializable{
 	private String uniqueCarrier;
 	private String year;
 	private String month;
-	private String dayOfMonth;
+	private String dayOfWeek;
 	
-	public FlightId (String uniqueCarrier, String year, String month, String dayOfMonth){
+	public FlightId (String uniqueCarrier, String year, String month, String dayOfWeek){
 		this.uniqueCarrier = uniqueCarrier;
 		this.year = year;
 		this.month = month;
-		this.dayOfMonth = dayOfMonth;
+		this.dayOfWeek = dayOfWeek;
 	}
 
 	public String getUniqueCarrier() {
@@ -43,19 +43,19 @@ public class FlightId implements Serializable{
 		this.month = month;
 	}
 
-	public String getDayOfMonth() {
-		return dayOfMonth;
+	public String getDayOfWeek() {
+		return dayOfWeek;
 	}
 
-	public void setDayOfMonth(String dayOfMonth) {
-		this.dayOfMonth = dayOfMonth;
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dayOfMonth == null) ? 0 : dayOfMonth.hashCode());
+		result = prime * result + ((dayOfWeek == null) ? 0 : dayOfWeek.hashCode());
 		result = prime * result + ((month == null) ? 0 : month.hashCode());
 		result = prime * result + ((uniqueCarrier == null) ? 0 : uniqueCarrier.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
@@ -71,10 +71,10 @@ public class FlightId implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		FlightId other = (FlightId) obj;
-		if (dayOfMonth == null) {
-			if (other.dayOfMonth != null)
+		if (dayOfWeek == null) {
+			if (other.dayOfWeek != null)
 				return false;
-		} else if (!dayOfMonth.equals(other.dayOfMonth))
+		} else if (!dayOfWeek.equals(other.dayOfWeek))
 			return false;
 		if (month == null) {
 			if (other.month != null)

@@ -17,12 +17,12 @@ public class ManagingRoutes implements PairFunction<Tuple2<Object, BSONObject>, 
 	@Override
 	public Tuple2<FlightId, FlightInfoDelay> call(Tuple2<Object, BSONObject> arg) throws Exception {
 		String uniqueCarrier = (String) arg._2.get("UniqueCarrier");
-		String year = (String) arg._2.get("Year").toString();
-		String month = (String) arg._2.get("Month").toString();
-		String day = (String) arg._2.get("DayofMonth").toString();
-		Double arrivalDelay = Double.parseDouble(arg._2.get("ArrDelayMinutes").toString());
+		String year = arg._2.get("Year").toString();
+		String month = arg._2.get("Month").toString();
+		String dayOfWeek = arg._2.get("DayOfWeek").toString();
+		Double arrivalDelay = (Double) arg._2.get("ArrDelayMinutes");
 		
-		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(uniqueCarrier, year, month, day),
+		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(uniqueCarrier, year, month, dayOfWeek),
 					new FlightInfoDelay(arrivalDelay, 1));
 	}
 
