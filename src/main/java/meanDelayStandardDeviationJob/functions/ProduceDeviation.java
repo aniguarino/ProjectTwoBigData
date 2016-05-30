@@ -19,8 +19,15 @@ public class ProduceDeviation
 			throws Exception {
 		Double deviation = Math.pow(arg0._2._1.getArrivalDelay()-arg0._2._2.getMeanDelay(), 2);
 		
-		return new Tuple2<FlightId, FlightInfoDelay>(arg0._1, new FlightInfoDelay(arg0._2._1.getArrivalDelay(),
-				deviation, arg0._2._2.getMeanDelay(), 1));
+		FlightInfoDelay fid = new FlightInfoDelay(arg0._2._1.getArrivalDelay(), deviation, arg0._2._2.getMeanDelay(), 1);
+		fid.setDelay0(arg0._2._2.getDelay0());
+		fid.setDelay15(arg0._2._2.getDelay15());
+		fid.setDelay60(arg0._2._2.getDelay60());
+		fid.setDelay3h(arg0._2._2.getDelay3h());
+		fid.setDelay24h(arg0._2._2.getDelay24h());
+		fid.setDelayOther(arg0._2._2.getDelayOther());
+		
+		return new Tuple2<FlightId, FlightInfoDelay>(arg0._1, fid);
 	}
 
 }

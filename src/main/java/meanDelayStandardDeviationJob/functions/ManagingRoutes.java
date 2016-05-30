@@ -23,7 +23,7 @@ public class ManagingRoutes implements PairFunction<Tuple2<Object, BSONObject>, 
 		Double arrivalDelay = (Double) arg._2.get("ArrDelayMinutes");
 		
 		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(uniqueCarrier, year, month, dayOfWeek),
-					new FlightInfoDelay(arrivalDelay, 0.0, 0.0, 1));
+					new FlightInfoDelay(arrivalDelay));
 	}
 
 }

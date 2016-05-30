@@ -49,7 +49,13 @@ public class SaveMongo implements PairFunction<Tuple2<FlightId, FlightInfoDelay>
 				append("Month", arg0._1.getMonth()).
 				append("DayOfWeek", arg0._1.getDayOfWeek()).
 				append("MeanDelay", meanDelayHours+":"+meanDelayMin).
-				append("CountDenom", arg0._2.getCountFlight()).
+				append("CountDelay0", arg0._2.getDelay0()).
+				append("CountDelay15", arg0._2.getDelay15()).
+				append("CountDelay60", arg0._2.getDelay60()).
+				append("CountDelay3h", arg0._2.getDelay3h()).
+				append("CountDelay24h", arg0._2.getDelay24h()).
+				append("CountDelayOther", arg0._2.getDelayOther()).
+				append("CountTotal", arg0._2.getCountFlight()).
 				append("StandardDeviation", standardDeviationHours+":"+standardDeviationMin);
 		
 		return new Tuple2<Object, BSONObject>(null, save);
