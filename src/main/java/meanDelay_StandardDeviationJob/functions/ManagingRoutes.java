@@ -1,10 +1,10 @@
-package meanDelayJob.functions;
+package meanDelay_StandardDeviationJob.functions;
 
 import org.apache.spark.api.java.function.PairFunction;
 import org.bson.BSONObject;
 
-import meanDelayJob.model.FlightId;
-import meanDelayJob.model.FlightInfoDelay;
+import meanDelay_StandardDeviationJob.model.FlightId;
+import meanDelay_StandardDeviationJob.model.FlightInfoDelay;
 import scala.Tuple2;
 
 public class ManagingRoutes implements PairFunction<Tuple2<Object, BSONObject>, FlightId, FlightInfoDelay> {
@@ -23,7 +23,7 @@ public class ManagingRoutes implements PairFunction<Tuple2<Object, BSONObject>, 
 		Double arrivalDelay = (Double) arg._2.get("ArrDelayMinutes");
 		
 		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(uniqueCarrier, year, month, dayOfWeek),
-					new FlightInfoDelay(arrivalDelay, 1));
+					new FlightInfoDelay(arrivalDelay, 0.0, 1));
 	}
 
 }

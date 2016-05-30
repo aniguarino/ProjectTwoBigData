@@ -1,4 +1,4 @@
-package meanDelayJob.model;
+package meanDelay_StandardDeviationJob.model;
 
 import java.io.Serializable;
 

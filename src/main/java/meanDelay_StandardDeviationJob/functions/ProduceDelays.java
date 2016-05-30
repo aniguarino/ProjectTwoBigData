@@ -1,8 +1,8 @@
-package meanDelayJob.functions;
+package meanDelay_StandardDeviationJob.functions;
 
 import org.apache.spark.api.java.function.Function2;
 
-import meanDelayJob.model.FlightInfoDelay;
+import meanDelay_StandardDeviationJob.model.FlightInfoDelay;
 
 public class ProduceDelays implements Function2<FlightInfoDelay, FlightInfoDelay, FlightInfoDelay> {
 
@@ -16,6 +16,7 @@ public class ProduceDelays implements Function2<FlightInfoDelay, FlightInfoDelay
 		
 		FlightInfoDelay fid = new FlightInfoDelay(
 				arg0.getArrivalDelay()+arg1.getArrivalDelay(),
+				0.0,
 				arg0.getCountFlight()+arg1.getCountFlight()
 				); 
 		

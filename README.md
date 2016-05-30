@@ -8,5 +8,5 @@ Nota: Eseguire i Job in serie, con l'ordinamento indicato:
 
 1) routesJob
 2) markersJob
-3) meanDelayJob
+3) meanDelay_StandardDeviationJob
 4) 
