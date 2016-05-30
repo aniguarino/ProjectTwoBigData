@@ -1,10 +1,10 @@
-package meanDelay_StandardDeviationJob.functions;
+package meanDelayStandardDeviationJob.functions;
 
 import org.apache.spark.api.java.function.Function2;
 
-import meanDelay_StandardDeviationJob.model.FlightInfoDelay;
+import meanDelayStandardDeviationJob.model.FlightInfoDelay;
 
-public class ProduceDelays implements Function2<FlightInfoDelay, FlightInfoDelay, FlightInfoDelay> {
+public class ProduceStandardDeviation implements Function2<FlightInfoDelay, FlightInfoDelay, FlightInfoDelay> {
 
 	/**
 	 * 
@@ -15,11 +15,12 @@ public class ProduceDelays implements Function2<FlightInfoDelay, FlightInfoDelay
 	public FlightInfoDelay call(FlightInfoDelay arg0, FlightInfoDelay arg1) throws Exception {
 		
 		FlightInfoDelay fid = new FlightInfoDelay(
-				arg0.getArrivalDelay()+arg1.getArrivalDelay(),
-				0.0,
+				arg0.getArrivalDelay(),
+				arg0.getDeviation()+arg1.getDeviation(),
+				arg0.getMeanDelay(),
 				arg0.getCountFlight()+arg1.getCountFlight()
-				); 
-		
+				);
+
 		return fid;
 	}
 

@@ -1,4 +1,4 @@
-package meanDelay_StandardDeviationJob.model;
+package meanDelayStandardDeviationJob.model;
 
 import java.io.Serializable;
 
@@ -9,12 +9,14 @@ public class FlightInfoDelay implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Double arrivalDelay;
-	private Double intermediateStandDeviation;
+	private Double deviation;
+	private Double meanDelay;
 	private Integer countFlight;
 	
-	public FlightInfoDelay (Double meanDelay, Double isd, Integer countFlights){
-		this.arrivalDelay = meanDelay;
-		this.intermediateStandDeviation = isd;
+	public FlightInfoDelay (Double arrivalDelay, Double deviation, Double meanDelay, Integer countFlights){
+		this.arrivalDelay = arrivalDelay;
+		this.deviation = deviation;
+		this.meanDelay = meanDelay;
 		this.countFlight = countFlights;
 	}
 
@@ -34,12 +36,20 @@ public class FlightInfoDelay implements Serializable {
 		this.countFlight = countFlights;
 	}
 
-	public Double getIntermediateStandDeviation() {
-		return intermediateStandDeviation;
+	public Double getDeviation() {
+		return deviation;
 	}
 
-	public void setIntermediateStandDeviation(Double intermediateStandDeviation) {
-		this.intermediateStandDeviation = intermediateStandDeviation;
+	public void setDeviation(Double deviation) {
+		this.deviation = deviation;
+	}
+
+	public Double getMeanDelay() {
+		return meanDelay;
+	}
+
+	public void setMeanDelay(Double meanDelay) {
+		this.meanDelay = meanDelay;
 	}
 	
 }

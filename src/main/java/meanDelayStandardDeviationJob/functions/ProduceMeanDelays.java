@@ -1,12 +1,12 @@
-package meanDelay_StandardDeviationJob.functions;
+package meanDelayStandardDeviationJob.functions;
 
 import org.apache.spark.api.java.function.PairFunction;
 
-import meanDelay_StandardDeviationJob.model.FlightId;
-import meanDelay_StandardDeviationJob.model.FlightInfoDelay;
+import meanDelayStandardDeviationJob.model.FlightId;
+import meanDelayStandardDeviationJob.model.FlightInfoDelay;
 import scala.Tuple2;
 
-public class ManagingIntermStandDeviation implements PairFunction<Tuple2<FlightId, FlightInfoDelay>, FlightId, FlightInfoDelay> {
+public class ProduceMeanDelays implements PairFunction<Tuple2<FlightId, FlightInfoDelay>, FlightId, FlightInfoDelay> {
 
 	/**
 	 * 
@@ -18,11 +18,9 @@ public class ManagingIntermStandDeviation implements PairFunction<Tuple2<FlightI
 		
 		Double meanDelay = (arg0._2.getArrivalDelay()/arg0._2.getCountFlight());
 		
-		Double intermediateStandardDeviation = Math.pow(arg0._2.getArrivalDelay()-meanDelay, 2);
-		
 		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(arg0._1.getUniqueCarrier(), arg0._1.getYear(), 
 				arg0._1.getMonth(), arg0._1.getDayOfWeek()), new FlightInfoDelay(arg0._2.getArrivalDelay(), 
-				intermediateStandardDeviation, arg0._2.getCountFlight()));
+				0.0, meanDelay, arg0._2.getCountFlight()));
 	}
 
 }
