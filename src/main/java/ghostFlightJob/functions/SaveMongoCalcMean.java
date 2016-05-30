@@ -18,7 +18,8 @@ public class SaveMongoCalcMean implements PairFunction<Tuple2<CompanyId, Counter
 
 	@Override
 	public Tuple2<Object, BSONObject> call(Tuple2<CompanyId, Counters> arg0) throws Exception {
-		String ghostFlightPercent = ((double)arg0._2.getCounterGhost()/(double)arg0._2.getCounterAll())*100+"%";
+		Double percent = (double) arg0._2.getCounterGhost() / (double) arg0._2.getCounterAll() * 100;
+		String ghostFlightPercent = Math.round(percent * 1000.0) / 1000.0 + "%";
 		
 		BSONObject save = new BasicDBObject().
 				append("UniqueCarrier", arg0._1.getUniqueCarrier()).
