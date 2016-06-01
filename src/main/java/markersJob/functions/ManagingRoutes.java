@@ -20,18 +20,18 @@ public class ManagingRoutes implements FlatMapFunction<Tuple2<Object, BSONObject
 	public Iterable<MarkerInfo> call(Tuple2<Object, BSONObject> arg) {
 		List<MarkerInfo> rtn = new ArrayList<MarkerInfo>();
 		
-		String markerCodeOrigin = (String) arg._2.get("OriginMarker");
+		String iataOrigin = (String) arg._2.get("OriginIata");
 		String labelCityOrigin = (String) arg._2.get("OriginCity");
 		String latitudeOrigin = (String) arg._2.get("OriginLatitude");
 		String longitudeOrigin = (String) arg._2.get("OriginLongitude");
 		
-		rtn.add(new MarkerInfo(markerCodeOrigin, labelCityOrigin, latitudeOrigin, longitudeOrigin));
+		rtn.add(new MarkerInfo(iataOrigin, labelCityOrigin, latitudeOrigin, longitudeOrigin));
 		
-		String markerCodeDest = (String) arg._2.get("DestMarker");
+		String iataDest = (String) arg._2.get("DestIata");
 		String labelCityDest = (String) arg._2.get("DestCity");
 		String latitudeDest = (String) arg._2.get("DestLatitude");
 		String longitudeDest = (String) arg._2.get("DestLongitude");
-		rtn.add(new MarkerInfo(markerCodeDest, labelCityDest, latitudeDest, longitudeDest));
+		rtn.add(new MarkerInfo(iataDest, labelCityDest, latitudeDest, longitudeDest));
 		
 		return rtn;
 	}

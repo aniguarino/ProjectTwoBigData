@@ -18,7 +18,7 @@ public class SaveMongo implements PairFunction<MarkerInfo, Object, BSONObject> {
 	@Override
 	public Tuple2<Object, BSONObject> call(MarkerInfo arg0) throws Exception {
 		BSONObject save = new BasicDBObject().
-				append("Code", arg0.getMarkerCodeOrigin()).
+				append("Iata", arg0.getIata()).
 				append("Latitude", arg0.getLatitude()).
 				append("Longitude", arg0.getLongitude()).
 				append("LabelCity", arg0.getLabel());

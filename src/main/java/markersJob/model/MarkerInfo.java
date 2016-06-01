@@ -7,13 +7,13 @@ public class MarkerInfo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String markerCodeOrigin;
+	private String iata;
 	private String label;
 	private String latitude;
 	private String longitude;
 
-	public MarkerInfo(String markerCodeOrigin, String label, String latitude, String longitude){
-		this.markerCodeOrigin = markerCodeOrigin;
+	public MarkerInfo(String iata, String label, String latitude, String longitude){
+		this.iata = iata;
 		this.label = label;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -43,22 +43,22 @@ public class MarkerInfo implements Serializable{
 		this.longitude = longitude;
 	}
 
-	public String getMarkerCodeOrigin() {
-		return markerCodeOrigin;
+	public String getIata() {
+		return iata;
 	}
 
-	public void setMarkerCodeOrigin(String markerCodeOrigin) {
-		this.markerCodeOrigin = markerCodeOrigin;
+	public void setIata(String iata) {
+		this.iata = iata;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((iata == null) ? 0 : iata.hashCode());
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
 		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
 		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
-		result = prime * result + ((markerCodeOrigin == null) ? 0 : markerCodeOrigin.hashCode());
 		return result;
 	}
 
@@ -71,6 +71,11 @@ public class MarkerInfo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		MarkerInfo other = (MarkerInfo) obj;
+		if (iata == null) {
+			if (other.iata != null)
+				return false;
+		} else if (!iata.equals(other.iata))
+			return false;
 		if (label == null) {
 			if (other.label != null)
 				return false;
@@ -85,11 +90,6 @@ public class MarkerInfo implements Serializable{
 			if (other.longitude != null)
 				return false;
 		} else if (!longitude.equals(other.longitude))
-			return false;
-		if (markerCodeOrigin == null) {
-			if (other.markerCodeOrigin != null)
-				return false;
-		} else if (!markerCodeOrigin.equals(other.markerCodeOrigin))
 			return false;
 		return true;
 	}
