@@ -4,9 +4,11 @@ import org.apache.spark.api.java.function.PairFunction;
 import org.bson.BSONObject;
 
 import com.mongodb.BasicDBObject;
+
+import markersJob.model.MarkerInfo;
 import scala.Tuple2;
 
-public class SaveMongo implements PairFunction<Tuple2<String, String>, Object, BSONObject> {
+public class SaveMongo implements PairFunction<MarkerInfo, Object, BSONObject> {
 
 	/**
 	 * 
@@ -14,12 +16,13 @@ public class SaveMongo implements PairFunction<Tuple2<String, String>, Object, B
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public Tuple2<Object, BSONObject> call(Tuple2<String, String> arg0) throws Exception {		
+	public Tuple2<Object, BSONObject> call(MarkerInfo arg0) throws Exception {
 		BSONObject save = new BasicDBObject().
-				append("MarkerCode", arg0._1).
-				append("LabelCity", arg0._2);
+				append("Code", arg0.getMarkerCodeOrigin()).
+				append("Latitude", arg0.getLatitude()).
+				append("Longitude", arg0.getLongitude()).
+				append("LabelCity", arg0.getLabel());
 		
 		return new Tuple2<Object, BSONObject>(null, save);
 	}
-
 }

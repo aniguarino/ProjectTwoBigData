@@ -39,7 +39,7 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 		if((Double)arg._2.get("Diverted") == 0.0 || (Double)arg._2.get("DivReachedDest") == 0.0)
 			dest = arg._2.get("Dest").toString();
 		else
-			dest = arg._2.get("Dest").toString();
+			dest = arg._2.get("Div1Airport").toString();
 		
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd:HHmm");
 		Date dateWithTime = df.parse(date+":"+depTime);

@@ -3,6 +3,7 @@ package markersJob;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.bson.BSONObject;
 
@@ -10,8 +11,8 @@ import com.mongodb.hadoop.MongoInputFormat;
 import com.mongodb.hadoop.MongoOutputFormat;
 
 import markersJob.functions.ManagingRoutes;
-import markersJob.functions.ProduceMarkers;
 import markersJob.functions.SaveMongo;
+import markersJob.model.MarkerInfo;
 
 public class JobMain {
 	private static JavaSparkContext sc;
@@ -33,9 +34,7 @@ public class JobMain {
 				BSONObject.class          // Value class
 				);
 
-		JavaPairRDD<String, String> routes = inputRDD.flatMapToPair(new ManagingRoutes());
-		
-		JavaPairRDD<String, String> markers = routes.reduceByKey(new ProduceMarkers());
+		JavaRDD<MarkerInfo> markers = inputRDD.flatMap(new ManagingRoutes()).distinct();
 		
 		JavaPairRDD<Object, BSONObject> markersSave = markers.mapToPair(new SaveMongo());
 
