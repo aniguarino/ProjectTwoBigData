@@ -1,9 +1,6 @@
 package routesJob.functions;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.spark.api.java.function.PairFunction;
 import org.bson.BSONObject;
@@ -27,28 +24,16 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 		String destCityName = (String) arg._2.get("DestCityName");
 		String flightDate = (String) arg._2.get("FlightDate");
 		String uniqueCarrier = (String) arg._2.get("UniqueCarrier");
-		String distance = (String) arg._2.get("Distance").toString();
+		String distance = arg._2.get("Distance").toString();
 		
-		String depTime = arg._2.get("DepTime").toString();
-		while(depTime.length()<4){
-			depTime = "0".concat(depTime);
-		}
-		String arrTime = arg._2.get("ArrTime").toString();
-		while(arrTime.length()<4){
-			arrTime = "0".concat(arrTime);
-		}
-		
-		DateFormat df = new SimpleDateFormat("HHmm");
-		Date depTimeDate = df.parse(depTime);
-		Date arrTimeDate = df.parse(arrTime);
-		
-		// Si vanno ad escludere nel calcolo della media del tempo di volo i voli prima del 2000
+		// Si vanno ad escludere nel calcolo della media del tempo di volo i voli prima del 1996
 		Long airTime = 0L;
 		Integer count = 0;
 		
-		if(flightDate.compareTo("2000-01-01")>0){
+		if(flightDate.compareTo("1996-01-01")>0){
+			airTime = (long)(double)arg._2.get("ActualElapsedTime");
+			airTime = airTime * 60 * 1000;
 			count = 1;
-			airTime = arrTimeDate.getTime()-depTimeDate.getTime();
 		}
 
 		return new Tuple2<RouteId, RouteInfo>(new RouteId(origin, dest, uniqueCarrier), new RouteInfo(flightDate, flightDate, distance, airTime, count, originCityName, destCityName));

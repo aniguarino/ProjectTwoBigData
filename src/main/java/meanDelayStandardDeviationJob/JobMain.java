@@ -16,7 +16,7 @@ import meanDelayStandardDeviationJob.functions.ProduceDelays;
 import meanDelayStandardDeviationJob.functions.ProduceDeviation;
 import meanDelayStandardDeviationJob.functions.SaveMongo;
 import meanDelayStandardDeviationJob.model.*;
-import routesJob.functions.FilterCancelledAndDiverted;
+import meanDelayStandardDeviationJob.functions.FilterCancelledAndDiverted;
 import scala.Tuple2;
 
 public class JobMain {
