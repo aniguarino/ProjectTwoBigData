@@ -1,4 +1,4 @@
-package routesJob;
+package routesDistinctJob;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,15 +13,15 @@ import org.bson.BSONObject;
 import com.mongodb.hadoop.MongoInputFormat;
 import com.mongodb.hadoop.MongoOutputFormat;
 
-import routesJob.functions.FilterAirport;
-import routesJob.functions.FilterCancelledAndDiverted;
-import routesJob.functions.ManagingAirportFunction;
-import routesJob.functions.ManagingFlights;
-import routesJob.functions.ProduceRoutes;
-import routesJob.functions.SaveMongoCalcMean;
-import routesJob.model.AirportInfo;
-import routesJob.model.RouteId;
-import routesJob.model.RouteInfo;
+import routesDistinctJob.functions.FilterAirport;
+import routesDistinctJob.functions.FilterCancelledAndDiverted;
+import routesDistinctJob.functions.ManagingAirportFunction;
+import routesDistinctJob.functions.ManagingFlights;
+import routesDistinctJob.functions.ProduceRoutes;
+import routesDistinctJob.functions.SaveMongoCalcMean;
+import routesDistinctJob.model.AirportInfo;
+import routesDistinctJob.model.RouteId;
+import routesDistinctJob.model.RouteInfo;
 
 
 public class JobMain {
@@ -40,7 +40,7 @@ public class JobMain {
 		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.input");
 
 		Configuration outputConfig = new Configuration();
-		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.routes");
+		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.distinctroutes");
 		
 		JavaPairRDD<Object, BSONObject> airportsRDD = sc.newAPIHadoopRDD(
 				mongodbConfigAirports,            // Configuration
@@ -74,6 +74,6 @@ public class JobMain {
 				outputConfig
 				);
 
-		System.out.println("Fatto! Ho salvato le rotte distinte per ogni compagnia in MongoDB...");
+		System.out.println("Fatto! Ho salvato le rotte distinte in MongoDB...");
 	}
 }
