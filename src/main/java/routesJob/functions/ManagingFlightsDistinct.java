@@ -1,15 +1,15 @@
-package routesDistinctJob.functions;
+package routesJob.functions;
 
 import java.text.ParseException;
 
 import org.apache.spark.api.java.function.PairFunction;
 import org.bson.BSONObject;
 
-import routesDistinctJob.model.RouteId;
-import routesDistinctJob.model.RouteInfo;
+import routesJob.model.RouteId;
+import routesJob.model.RouteInfo;
 import scala.Tuple2;
 
-public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>, RouteId, RouteInfo> {
+public class ManagingFlightsDistinct implements PairFunction<Tuple2<Object, BSONObject>, RouteId, RouteInfo> {
 
 	/**
 	 * 
@@ -35,6 +35,6 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 			count = 1;
 		}
 
-		return new Tuple2<RouteId, RouteInfo>(new RouteId(origin, dest), new RouteInfo(flightDate, flightDate, distance, airTime, count, originCityName, destCityName));
+		return new Tuple2<RouteId, RouteInfo>(new RouteId(origin, dest, ""), new RouteInfo(flightDate, flightDate, distance, airTime, count, originCityName, destCityName));
 	}
 }

@@ -1,8 +1,8 @@
-package routesDistinctJob.model;
+package routesJob.model;
 
 import java.io.Serializable;
 
-public class RouteId implements Serializable{
+public class RouteIdWithoutCarrier implements Serializable{
 	/**
 	 * 
 	 */
@@ -10,7 +10,7 @@ public class RouteId implements Serializable{
 	private String originIata;
 	private String destIata;
 	
-	public RouteId(String origin, String dest){
+	public RouteIdWithoutCarrier(String origin, String dest){
 		this.originIata = origin;
 		this.destIata = dest;
 	}
@@ -48,7 +48,7 @@ public class RouteId implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RouteId other = (RouteId) obj;
+		RouteIdWithoutCarrier other = (RouteIdWithoutCarrier) obj;
 		if (destIata == null) {
 			if (other.destIata != null)
 				return false;

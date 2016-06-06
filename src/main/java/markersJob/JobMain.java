@@ -22,7 +22,7 @@ public class JobMain {
 		sc = new JavaSparkContext(sparkConf);
 
 		Configuration inputConfig = new Configuration();
-		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.routes");
+		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.distinctroutes");
 
 		Configuration outputConfig = new Configuration();
 		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.markers");

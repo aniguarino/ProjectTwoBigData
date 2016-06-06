@@ -1,4 +1,4 @@
-package routesDistinctJob.functions;
+package routesJob.functions;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -9,12 +9,12 @@ import org.bson.BSONObject;
 
 import com.mongodb.BasicDBObject;
 
-import routesDistinctJob.model.AirportInfo;
-import routesDistinctJob.model.RouteId;
-import routesDistinctJob.model.RouteInfo;
+import routesJob.model.AirportInfo;
+import routesJob.model.RouteId;
+import routesJob.model.RouteInfo;
 import scala.Tuple2;
 
-public class SaveMongoCalcMean implements PairFunction<Tuple2<RouteId, RouteInfo>, Object, BSONObject> {
+public class SaveMongoCalcMeanDistinct implements PairFunction<Tuple2<RouteId, RouteInfo>, Object, BSONObject> {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class SaveMongoCalcMean implements PairFunction<Tuple2<RouteId, RouteInfo
 	
 	private Broadcast<Map<String, AirportInfo>> airportsBroadcast;
 
-	public SaveMongoCalcMean(Broadcast<Map<String, AirportInfo>> airportsBroadcast) {
+	public SaveMongoCalcMeanDistinct(Broadcast<Map<String, AirportInfo>> airportsBroadcast) {
 		this.airportsBroadcast = airportsBroadcast;
 	}
 
