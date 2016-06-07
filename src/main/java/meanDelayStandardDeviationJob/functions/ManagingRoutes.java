@@ -20,10 +20,16 @@ public class ManagingRoutes implements PairFunction<Tuple2<Object, BSONObject>, 
 		String year = arg._2.get("Year").toString();
 		String month = arg._2.get("Month").toString();
 		String dayOfWeek = arg._2.get("DayOfWeek").toString();
-		Double arrivalDelay = (Double) arg._2.get("ArrDelayMinutes");
+		String arrivalDelay = arg._2.get("ArrDelayMinutes").toString();
+		
+		Double arrivalDelayDouble;
+		if(arrivalDelay.equals(""))
+			arrivalDelayDouble = 0.0;
+		else
+			arrivalDelayDouble = Double.parseDouble(arrivalDelay);
 		
 		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(uniqueCarrier, year, month, dayOfWeek),
-					new FlightInfoDelay(arrivalDelay));
+					new FlightInfoDelay(arrivalDelayDouble));
 	}
 
 }
