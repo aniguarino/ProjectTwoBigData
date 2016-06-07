@@ -30,7 +30,7 @@ public class JobMain {
 		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.input");
 
 		Configuration outputConfig = new Configuration();
-		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.meandelaystandardeviation");
+		outputConfig.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.statscarrier");
 
 		JavaPairRDD<Object, BSONObject> inputRDD = sc.newAPIHadoopRDD(
 				inputConfig,       // Configuration
