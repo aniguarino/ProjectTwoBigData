@@ -39,7 +39,7 @@ public class JobMain {
 				BSONObject.class          // Value class
 				).filter(new FilterCancelledAndDiverted());
 
-		JavaPairRDD<FlightId, FlightInfoDelay> flights = inputRDD.mapToPair(new ManagingRoutes()).cache();
+		JavaPairRDD<FlightId, FlightInfoDelay> flights = inputRDD.mapToPair(new ManagingRoutes());
 		
 		JavaPairRDD<FlightId, FlightInfoDelay> delays = flights.reduceByKey(new ProduceDelays());
 		

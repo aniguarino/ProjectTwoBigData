@@ -27,6 +27,6 @@ public class ProduceMeanDelays implements PairFunction<Tuple2<FlightId, FlightIn
 		fid.setDelayOther(arg0._2.getDelayOther());
 		
 		return new Tuple2<FlightId, FlightInfoDelay>(new FlightId(arg0._1.getUniqueCarrier(), arg0._1.getYear(), 
-				arg0._1.getMonth(), arg0._1.getDayOfWeek()), fid );
+				arg0._1.getMonth(), arg0._1.getDayOfWeek()), fid);
 	}
 }
