@@ -1,4 +1,4 @@
-package routesJob.model;
+package routesJobDistinct.model;
 
 import java.io.Serializable;
 

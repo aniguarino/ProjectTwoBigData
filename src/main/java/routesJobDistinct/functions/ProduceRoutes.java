@@ -1,8 +1,8 @@
-package routesJob.functions;
+package routesJobDistinct.functions;
 
 import org.apache.spark.api.java.function.Function2;
 
-import routesJob.model.RouteInfo;
+import routesJobDistinct.model.RouteInfo;
 
 public class ProduceRoutes implements Function2<RouteInfo, RouteInfo, RouteInfo> {
 	/**
@@ -30,7 +30,9 @@ public class ProduceRoutes implements Function2<RouteInfo, RouteInfo, RouteInfo>
 				arg0.getDistance(),
 				arg0.getAirTime()+arg1.getAirTime(),
 				arg0.getCountAirTime()+arg1.getCountAirTime(),
-				arg0.getInfoDelay().sum(arg1.getInfoDelay()),
+				arg0.getDepDelay()+arg1.getDepDelay(),
+				arg0.getArrDelay()+arg1.getArrDelay(),
+				arg0.getCountDelay()+arg1.getCountDelay(),
 				arg0.getOriginCity(),
 				arg0.getDestCity());
 

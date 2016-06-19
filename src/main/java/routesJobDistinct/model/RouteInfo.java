@@ -1,4 +1,4 @@
-package routesJob.model;
+package routesJobDistinct.model;
 
 import java.io.Serializable;
 
@@ -13,19 +13,23 @@ public class RouteInfo implements Serializable{
 	private String distance;
 	private Long airTime;
 	private Integer countAirTime;
-	private FlightInfoDelay infoDelay;
+	private Long depDelay;
+	private Long arrDelay;
+	private Integer countDelay;
 	private String originCity;
 	private String destCity;
-
+	
 	public RouteInfo(String minFlightDate, String maxFlightDate, String distance, Long airTime, Integer countAirTime,
-			FlightInfoDelay infoDelay, String originCity, String destCity) {
+			Long depDelay, Long arrDelay, Integer countDelay, String originCity, String destCity) {
 		super();
 		this.minFlightDate = minFlightDate;
 		this.maxFlightDate = maxFlightDate;
 		this.distance = distance;
 		this.airTime = airTime;
 		this.countAirTime = countAirTime;
-		this.infoDelay = infoDelay;
+		this.depDelay = depDelay;
+		this.arrDelay = arrDelay;
+		this.countDelay = countDelay;
 		this.originCity = originCity;
 		this.destCity = destCity;
 	}
@@ -62,6 +66,38 @@ public class RouteInfo implements Serializable{
 		this.airTime = airTime;
 	}
 
+	public Integer getCountAirTime() {
+		return countAirTime;
+	}
+
+	public void setCountAirTime(Integer countAirTime) {
+		this.countAirTime = countAirTime;
+	}
+
+	public Long getDepDelay() {
+		return depDelay;
+	}
+
+	public void setDepDelay(Long depDelay) {
+		this.depDelay = depDelay;
+	}
+
+	public Long getArrDelay() {
+		return arrDelay;
+	}
+
+	public void setArrDelay(Long arrDelay) {
+		this.arrDelay = arrDelay;
+	}
+
+	public Integer getCountDelay() {
+		return countDelay;
+	}
+
+	public void setCountDelay(Integer countDelay) {
+		this.countDelay = countDelay;
+	}
+
 	public String getOriginCity() {
 		return originCity;
 	}
@@ -76,21 +112,5 @@ public class RouteInfo implements Serializable{
 
 	public void setDestCity(String destCity) {
 		this.destCity = destCity;
-	}
-
-	public Integer getCountAirTime() {
-		return countAirTime;
-	}
-
-	public void setCountAirTime(Integer countAirTime) {
-		this.countAirTime = countAirTime;
-	}
-
-	public FlightInfoDelay getInfoDelay() {
-		return infoDelay;
-	}
-
-	public void setInfoDelay(FlightInfoDelay infoDelay) {
-		this.infoDelay = infoDelay;
 	}
 }

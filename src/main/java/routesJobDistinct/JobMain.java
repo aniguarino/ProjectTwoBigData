@@ -1,4 +1,4 @@
-package routesJob;
+package routesJobDistinct;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,12 +16,13 @@ import com.mongodb.hadoop.MongoOutputFormat;
 import routesJob.functions.FilterAirport;
 import routesJob.functions.FilterCancelledAndDiverted;
 import routesJob.functions.ManagingAirportFunction;
-import routesJob.functions.ManagingFlights;
-import routesJob.functions.ProduceRoutes;
-import routesJob.functions.SaveMongoCalcMean;
+import routesJobDistinct.functions.ManagingFlights;
+import routesJobDistinct.functions.ProduceRoutes;
+import routesJobDistinct.functions.SaveMongoCalcMean;
 import routesJob.model.AirportInfo;
-import routesJob.model.RouteId;
-import routesJob.model.RouteInfo;
+import routesJobDistinct.model.RouteIdWithoutCarrier;
+import routesJobDistinct.model.RouteInfo;
+
 
 public class JobMain {
 	private static JavaSparkContext sc;
@@ -59,9 +60,9 @@ public class JobMain {
 				BSONObject.class          // Value class
 				).filter(new FilterCancelledAndDiverted());
 
-		JavaPairRDD<RouteId, RouteInfo> routesAll = inputRDD.mapToPair(new ManagingFlights()).reduceByKey(new ProduceRoutes());
+		JavaPairRDD<RouteIdWithoutCarrier, RouteInfo> routesDistinctAll = inputRDD.mapToPair(new ManagingFlights()).reduceByKey(new ProduceRoutes());
 		
-		JavaPairRDD<Object, BSONObject> routesSaveAll = routesAll.mapToPair(new SaveMongoCalcMean(airportsBroadcast));
+		JavaPairRDD<Object, BSONObject> routesSaveAll = routesDistinctAll.mapToPair(new SaveMongoCalcMean(airportsBroadcast));
 
 		routesSaveAll.saveAsNewAPIHadoopFile(
 				"file:///this-is-completely-unused",
@@ -71,6 +72,6 @@ public class JobMain {
 				outputConfigRoutes
 				);
 
-		System.out.println("Fatto! Ho salvato le rotte in MongoDB...");
+		System.out.println("Fatto! Ho salvato le rotte distinte in MongoDB...");
 	}
 }
