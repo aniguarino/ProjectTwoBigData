@@ -40,7 +40,7 @@ public class JobMain {
 		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.input");
 
 		Configuration outputConfigRoutes = new Configuration();
-		outputConfigRoutes.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.routes");
+		outputConfigRoutes.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.distinctroutes");
 		
 		JavaPairRDD<Object, BSONObject> airportsRDD = sc.newAPIHadoopRDD(
 				mongodbConfigAirports,            // Configuration
