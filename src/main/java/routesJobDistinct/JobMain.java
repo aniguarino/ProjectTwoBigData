@@ -16,10 +16,10 @@ import com.mongodb.hadoop.MongoOutputFormat;
 import routesJob.functions.FilterAirport;
 import routesJob.functions.FilterCancelledAndDiverted;
 import routesJob.functions.ManagingAirportFunction;
+import routesJob.model.AirportInfo;
 import routesJobDistinct.functions.ManagingFlights;
 import routesJobDistinct.functions.ProduceRoutes;
 import routesJobDistinct.functions.SaveMongoCalcMean;
-import routesJob.model.AirportInfo;
 import routesJobDistinct.model.RouteIdWithoutCarrier;
 import routesJobDistinct.model.RouteInfo;
 
