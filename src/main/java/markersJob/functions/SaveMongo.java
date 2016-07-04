@@ -36,12 +36,26 @@ public class SaveMongo implements PairFunction<Tuple2<MarkerInfo, MarkerDelay>, 
 				append("CountDelayDep3h", arg0._2.getDelayDep3h()).
 				append("CountDelayDep24h", arg0._2.getDelayDep24h()).
 				append("CountDelayDepOther", arg0._2.getDelayDepOther()).
+				
+				append("CarrierDelayDep", arg0._2.getCarrierDelayDep()).
+				append("WeatherDelayDep", arg0._2.getWeatherDelayDep()).
+				append("NASDelayDep", arg0._2.getNASDelayDep()).
+				append("SecurityDelayDep", arg0._2.getSecurityDelayDep()).
+				append("LateAircraftDelayDep", arg0._2.getLateAircraftDelayDep()).
+				
 				append("CountDelayArr0", arg0._2.getDelayArr0()).
 				append("CountDelayArr15", arg0._2.getDelayArr15()).
 				append("CountDelayArr60", arg0._2.getDelayArr60()).
 				append("CountDelayArr3h", arg0._2.getDelayArr3h()).
 				append("CountDelayArr24h", arg0._2.getDelayArr24h()).
-				append("CountDelayArrOther", arg0._2.getDelayArrOther());
+				append("CountDelayArrOther", arg0._2.getDelayArrOther()).
+				
+				append("CarrierDelayArr", arg0._2.getCarrierDelayArr()).
+				append("WeatherDelayArr", arg0._2.getWeatherDelayArr()).
+				append("NASDelayArr", arg0._2.getNASDelayArr()).
+				append("SecurityDelayArr", arg0._2.getSecurityDelayArr()).
+				append("LateAircraftDelayArr", arg0._2.getLateAircraftDelayArr()
+				);
 		
 		return new Tuple2<Object, BSONObject>(null, save);
 	}

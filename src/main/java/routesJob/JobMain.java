@@ -37,8 +37,8 @@ public class JobMain {
 		mongodbConfigAirports.set("mongo.input.fields", "{iata_code:1, iso_country:1, name:1, latitude_deg:1, longitude_deg:1}");
 
 		Configuration inputConfig = new Configuration();
-		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.input");
-		inputConfig.set("mongo.input.fields", "{Origin:1, OriginCityName:1, Dest:1, DestCityName:1, FlightDate:1, UniqueCarrier:1, Distance:1, DepDelayMinutes:1, ArrDelayMinutes:1, Diverted:1, Cancelled:1, ActualElapsedTime:1}");
+		inputConfig.set("mongo.input.uri", "mongodb://localhost:27017/airplaneDB.subset");
+		inputConfig.set("mongo.input.fields", "{Origin:1, OriginCityName:1, Dest:1, DestCityName:1, FlightDate:1, UniqueCarrier:1, Distance:1, DepDelayMinutes:1, ArrDelayMinutes:1, Diverted:1, Cancelled:1, ActualElapsedTime:1, CarrierDelay:1, WeatherDelay:1, NASDelay:1, SecurityDelay:1, LateAircraftDelay:1}");
 
 		Configuration outputConfigRoutes = new Configuration();
 		outputConfigRoutes.set("mongo.output.uri", "mongodb://localhost:27017/airplaneDB.routes");

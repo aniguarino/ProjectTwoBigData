@@ -25,6 +25,12 @@ public class ManagingRoutes implements PairFlatMapFunction<Tuple2<Object, BSONOb
 
 	@Override
 	public Iterable<Tuple2<MarkerInfo, MarkerDelay>> call(Tuple2<Object, BSONObject> arg) throws ParseException {
+		Double carrierDelay = (Double) arg._2.get("CarrierDelay");
+		Double weatherDelay = (Double) arg._2.get("WeatherDelay");
+		Double NASDelay = (Double) arg._2.get("NASDelay");
+		Double securityDelay = (Double) arg._2.get("SecurityDelay");
+		Double lateAircraftDelay = (Double) arg._2.get("LateAircraftDelay");
+		
 		List<Tuple2<MarkerInfo, MarkerDelay>> rtn = new ArrayList<Tuple2<MarkerInfo, MarkerDelay>>();
 		
 		String iataOrigin = (String) arg._2.get("OriginIata");
@@ -43,7 +49,8 @@ public class ManagingRoutes implements PairFlatMapFunction<Tuple2<Object, BSONOb
 		
 		MarkerInfo markerOrigin = new MarkerInfo(iataOrigin, labelCityOrigin, latitudeOrigin, longitudeOrigin);
 		MarkerDelay markerOriginDelay = new MarkerDelay(meanDepDelayLong, 1, 0L, 0, delayDep0, delayDep15, delayDep60,
-				delayDep3h, delayDep24h, delayDepOther, 0, 0, 0, 0, 0, 0);
+				delayDep3h, delayDep24h, delayDepOther, carrierDelay, weatherDelay, NASDelay, securityDelay, lateAircraftDelay,
+				0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		
 		rtn.add(new Tuple2<MarkerInfo, MarkerDelay>(markerOrigin, markerOriginDelay));
 		
@@ -62,8 +69,9 @@ public class ManagingRoutes implements PairFlatMapFunction<Tuple2<Object, BSONOb
 		Integer delayArrOther = Integer.parseInt(arg._2.get("CountDelayArrOther").toString());
 		
 		MarkerInfo markerDest = new MarkerInfo(iataDest, labelCityDest, latitudeDest, longitudeDest);
-		MarkerDelay markerDestDelay = new MarkerDelay(0L, 0, meanArrDelayLong, 1, 0, 0, 0, 0, 0, 0, delayArr0, delayArr15, delayArr60,
-				delayArr3h, delayArr24h, delayArrOther);
+		MarkerDelay markerDestDelay = new MarkerDelay(0L, 0, meanArrDelayLong, 1, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				delayArr0, delayArr15, delayArr60, delayArr3h, delayArr24h, delayArrOther, carrierDelay, weatherDelay, NASDelay,
+				securityDelay, lateAircraftDelay);
 		
 		rtn.add(new Tuple2<MarkerInfo, MarkerDelay>(markerDest, markerDestDelay));
 		

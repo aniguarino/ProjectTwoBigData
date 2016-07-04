@@ -25,6 +25,12 @@ public class FlightInfoDelay implements Serializable {
 	private Integer delayArrOther;
 	
 	private Integer countDelay;
+	
+	private Double carrierDelay;
+	private Double weatherDelay;
+	private Double NASDelay;
+	private Double securityDelay;
+	private Double lateAircraftDelay;
 
 	public FlightInfoDelay(Double depDelay, Integer delayDep0, Integer delayDep15,
 			Integer delayDep60, Integer delayDep3h, Integer delayDep24h, Integer delayDepOther, Double arrDelay,
@@ -47,7 +53,8 @@ public class FlightInfoDelay implements Serializable {
 		this.countDelay = countDelay;
 	}
 	
-	public FlightInfoDelay(Double arrDelay, Double depDelay) {
+	public FlightInfoDelay(Double arrDelay, Double depDelay, Double carrierDelay, Double weatherDelay, Double NASDelay,
+			Double securityDelay, Double lateAircraftDelay) {
 		this.arrDelay = arrDelay;
 		
 		this.delayArr0 = 0;
@@ -93,6 +100,12 @@ public class FlightInfoDelay implements Serializable {
 			this.delayDepOther = 1;
 		
 		this.countDelay = 1;
+		
+		this.carrierDelay = carrierDelay;
+		this.weatherDelay = weatherDelay;
+		this.NASDelay = NASDelay;
+		this.securityDelay = securityDelay;
+		this.lateAircraftDelay = lateAircraftDelay;
 	}
 	
 	public FlightInfoDelay(){
@@ -219,6 +232,46 @@ public class FlightInfoDelay implements Serializable {
 		this.countDelay = countDelay;
 	}
 
+	public Double getCarrierDelay() {
+		return carrierDelay;
+	}
+
+	public void setCarrierDelay(Double carrierDelay) {
+		this.carrierDelay = carrierDelay;
+	}
+
+	public Double getWeatherDelay() {
+		return weatherDelay;
+	}
+
+	public void setWeatherDelay(Double weatherDelay) {
+		this.weatherDelay = weatherDelay;
+	}
+
+	public Double getNASDelay() {
+		return NASDelay;
+	}
+
+	public void setNASDelay(Double nASDelay) {
+		NASDelay = nASDelay;
+	}
+
+	public Double getSecurityDelay() {
+		return securityDelay;
+	}
+
+	public void setSecurityDelay(Double securityDelay) {
+		this.securityDelay = securityDelay;
+	}
+
+	public Double getLateAircraftDelay() {
+		return lateAircraftDelay;
+	}
+
+	public void setLateAircraftDelay(Double lateAircraftDelay) {
+		this.lateAircraftDelay = lateAircraftDelay;
+	}
+
 	public FlightInfoDelay sum(FlightInfoDelay infoDelay) {
 		FlightInfoDelay rtn = new FlightInfoDelay();
 		
@@ -239,6 +292,12 @@ public class FlightInfoDelay implements Serializable {
 		rtn.setDelayArrOther(this.delayArrOther + infoDelay.getDelayArrOther());
 		
 		rtn.setCountDelay(this.countDelay + infoDelay.getCountDelay());
+		
+		rtn.setCarrierDelay(this.carrierDelay + infoDelay.getCarrierDelay());
+		rtn.setWeatherDelay(this.weatherDelay + infoDelay.getWeatherDelay());
+		rtn.setNASDelay(this.NASDelay + infoDelay.getNASDelay());
+		rtn.setSecurityDelay(this.securityDelay + infoDelay.getSecurityDelay());
+		rtn.setLateAircraftDelay(this.lateAircraftDelay + infoDelay.getLateAircraftDelay());
 		
 		return rtn;
 	}

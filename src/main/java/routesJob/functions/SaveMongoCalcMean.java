@@ -74,6 +74,11 @@ public class SaveMongoCalcMean implements PairFunction<Tuple2<RouteId, RouteInfo
 				append("CountDelayArr3h", arg0._2.getInfoDelay().getDelayArr3h()).
 				append("CountDelayArr24h", arg0._2.getInfoDelay().getDelayArr24h()).
 				append("CountDelayArrOther", arg0._2.getInfoDelay().getDelayArrOther()).
+				append("CarrierDelay", arg0._2.getInfoDelay().getCarrierDelay()).
+				append("WeatherDelay", arg0._2.getInfoDelay().getWeatherDelay()).
+				append("NASDelay", arg0._2.getInfoDelay().getNASDelay()).
+				append("SecurityDelay", arg0._2.getInfoDelay().getSecurityDelay()).
+				append("LateAircraftDelay", arg0._2.getInfoDelay().getLateAircraftDelay()).
 				append("DistanceMiles", arg0._2.getDistance()).
 				append("DistanceKm", (Double.parseDouble(arg0._2.getDistance())*unitMilesInKm)+"").
 				append("OriginIata", arg0._1.getOriginIata()).

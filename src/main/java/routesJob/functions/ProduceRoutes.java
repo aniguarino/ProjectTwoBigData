@@ -32,7 +32,8 @@ public class ProduceRoutes implements Function2<RouteInfo, RouteInfo, RouteInfo>
 				arg0.getCountAirTime()+arg1.getCountAirTime(),
 				arg0.getInfoDelay().sum(arg1.getInfoDelay()),
 				arg0.getOriginCity(),
-				arg0.getDestCity());
+				arg0.getDestCity()
+				);
 
 		return rtn;
 	}

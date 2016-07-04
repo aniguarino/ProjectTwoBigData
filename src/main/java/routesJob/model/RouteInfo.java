@@ -16,7 +16,7 @@ public class RouteInfo implements Serializable{
 	private FlightInfoDelay infoDelay;
 	private String originCity;
 	private String destCity;
-
+	
 	public RouteInfo(String minFlightDate, String maxFlightDate, String distance, Long airTime, Integer countAirTime,
 			FlightInfoDelay infoDelay, String originCity, String destCity) {
 		super();
@@ -62,22 +62,6 @@ public class RouteInfo implements Serializable{
 		this.airTime = airTime;
 	}
 
-	public String getOriginCity() {
-		return originCity;
-	}
-
-	public void setOriginCity(String originCity) {
-		this.originCity = originCity;
-	}
-
-	public String getDestCity() {
-		return destCity;
-	}
-
-	public void setDestCity(String destCity) {
-		this.destCity = destCity;
-	}
-
 	public Integer getCountAirTime() {
 		return countAirTime;
 	}
@@ -92,5 +76,21 @@ public class RouteInfo implements Serializable{
 
 	public void setInfoDelay(FlightInfoDelay infoDelay) {
 		this.infoDelay = infoDelay;
+	}
+
+	public String getOriginCity() {
+		return originCity;
+	}
+
+	public void setOriginCity(String originCity) {
+		this.originCity = originCity;
+	}
+
+	public String getDestCity() {
+		return destCity;
+	}
+
+	public void setDestCity(String destCity) {
+		this.destCity = destCity;
 	}
 }
