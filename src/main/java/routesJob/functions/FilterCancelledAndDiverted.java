@@ -14,7 +14,9 @@ public class FilterCancelledAndDiverted implements Function<Tuple2<Object, BSONO
 
 	@Override
 	public Boolean call(Tuple2<Object, BSONObject> v1) throws Exception {
-		if((Double)v1._2.get("Cancelled") == 1 || (Double)v1._2.get("Diverted") == 1)
+		if((double)v1._2.get("Cancelled") == 1 || (double)v1._2.get("Diverted") == 1 ||
+				"".equals(v1._2.get("DepDelay")) || "".equals(v1._2.get("ArrDelay")) ||
+				"".equals(v1._2.get("ActualElapsedTime")))
 			return false;
 		return true;
 	}

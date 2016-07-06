@@ -54,7 +54,7 @@ public class FlightInfoDelay implements Serializable {
 	}
 	
 	public FlightInfoDelay(Double arrDelay, Double depDelay, Double carrierDelay, Double weatherDelay, Double NASDelay,
-			Double securityDelay, Double lateAircraftDelay) {
+			Double securityDelay, Double lateAircraftDelay, Integer countDelay) {
 		this.arrDelay = arrDelay;
 		
 		this.delayArr0 = 0;
@@ -99,7 +99,7 @@ public class FlightInfoDelay implements Serializable {
 		if(depDelay>1440)
 			this.delayDepOther = 1;
 		
-		this.countDelay = 1;
+		this.countDelay = countDelay;
 		
 		this.carrierDelay = carrierDelay;
 		this.weatherDelay = weatherDelay;
