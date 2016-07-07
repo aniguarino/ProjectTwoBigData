@@ -34,6 +34,11 @@ public class SaveMongoCalcMean implements PairFunction<Tuple2<RouteId, RouteInfo
 		AirportInfo origin = airportsBroadcast.getValue().get(arg0._1.getOriginIata());
 		AirportInfo dest = airportsBroadcast.getValue().get(arg0._1.getDestIata());
 		
+		if(origin == null)
+			origin = new AirportInfo(null, null, null, "0", "0");
+		if(dest == null)
+			dest = new AirportInfo(null, null, null, "0", "0");
+		
 		Long meanAirTime = 0L;
 		
 		if(arg0._2.getCountAirTime() != 0)

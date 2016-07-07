@@ -29,7 +29,8 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 		
 		Double depDelay = (double)arg._2.get("DepDelayMinutes");
 		Double arrDelay = (double)arg._2.get("ArrDelayMinutes");
-		
+		Integer countDelay = 1;
+
 		Double carrierDelay = 0.0;
 		Double weatherDelay = 0.0;
 		Double NASDelay = 0.0;
@@ -52,7 +53,7 @@ public class ManagingFlights implements PairFunction<Tuple2<Object, BSONObject>,
 			lateAircraftDelay = (Double)arg._2.get("LateAircraftDelay");
 		}
 		
-		FlightInfoDelay infoDelay = new FlightInfoDelay(depDelay, arrDelay, carrierDelay, weatherDelay, NASDelay, securityDelay, lateAircraftDelay);
+		FlightInfoDelay infoDelay = new FlightInfoDelay(depDelay, arrDelay, carrierDelay, weatherDelay, NASDelay, securityDelay, lateAircraftDelay, countDelay);
 		
 		// Si vanno ad escludere nel calcolo della media del tempo di volo i voli prima del 1996
 		Long airTime = 0L;
