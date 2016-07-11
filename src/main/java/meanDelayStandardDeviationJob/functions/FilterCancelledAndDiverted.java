@@ -15,7 +15,8 @@ public class FilterCancelledAndDiverted implements Function<Tuple2<Object, BSONO
 	@Override
 	public Boolean call(Tuple2<Object, BSONObject> v1) throws Exception {
 		if((double)v1._2.get("Cancelled") == 1 ||
-				((Integer)v1._2.get("Year") < 2008 && (Integer)v1._2.get("Month") < 10))
+				(int)v1._2.get("Year")<2008 || 
+				((Integer)v1._2.get("Year") == 2008 && (Integer)v1._2.get("Month")<10))
 			return false;
 		return true;
 	}
